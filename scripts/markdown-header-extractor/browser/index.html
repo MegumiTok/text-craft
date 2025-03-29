@@ -5,12 +5,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Markdown Header Extractor</title>
+        <title>Text Craft</title>
     </head>
 </head>
 
 <body>
-    <textarea placeholder="Markdownを入力してください" id="markdownInput" rows="10" cols="50">
+    <h1>Text Craft</h1>
+
+    <!-- Markdown Header Extractor -->
+    <h2>Markdown Header Extractor</h2>
+
+    <textarea placeholder="Markdownを入力してください" id="mark-header-input" rows="10" cols="50">
 # Header 1
 ## Header 2
 ### Header 3
@@ -18,7 +23,17 @@ Some text here.
 ## Another Header 2
     </textarea>
     <button onclick="extractHeaders()">Extract Headers</button>
-    <div id="output"></div>
+    <div id="mark-header-output"></div>
+
+    <!-- Markdown Link Normalizer -->
+    <h2>Markdown Link Normalizer</h2>
+    <textarea placeholder="textを入力してください" id="markdown-link-input" rows="10" cols="50">
+        1. [[Japan|Tokyo]] started as a small village but became a huge city by changing the land.
+
+        2. [[Venice]] was built on water by turning islands into a beautiful city of canals.    
+    </textarea>
+    <button onclick="normalizeMarkdownLinks()">Process Text</button>
+    <div id="markdown-link-output"></div>
 
     <!-- JS -->
     <script type="text/javascript" src="./script.js"></script>
