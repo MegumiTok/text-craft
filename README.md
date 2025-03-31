@@ -10,7 +10,8 @@ A collection of lightweight Markdown text processing tools implemented purely wi
 text-craft/               # Project root
 └── src/                  # Source code (multi-module)
     ├── markdown-text-processor/
-    │   ├── browser/      # Browser implementation
+    │   ├── browser/      # Browser implementation（Works without a local server）
+    │   ├── browser-esm/  # Browser-compatible ESM implementations requiring a local server
     │   └── node/         # Node.js implementation
     └── (other-modules)/  # Additional modules can be added
 ```
@@ -38,9 +39,9 @@ pnpm install
 | Tool                             | Usage          | Config File   |
 | -------------------------------- | -------------- | ------------- |
 | [Prettier](https://prettier.io/) | Code Formatter | `.prettierrc` |
-| [ESLint](https://eslint.org/)    | Linter (TODO)  | (WIP)         |
+| [ESLint](https://eslint.org/)    | Linter         | (WIP)         |
 
-### Format & Lint
+#### Format & Lint
 
 ```sh
 pnpm exec prettier . --write
