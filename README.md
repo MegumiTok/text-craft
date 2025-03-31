@@ -55,6 +55,35 @@ This project uses Husky and lint-staged to automatically check code quality befo
 pnpm exec lint-staged
 ```
 
+### Module System Considerations
+
+This project explores different ways to handle JavaScript modules in the browser and Node.js.
+
+`browser/`: Contains simple scripts that can be opened directly using `file://`. Since ESM imports are restricted by CORS in this case, the code does not rely on the module system and is structured for direct usage in a browser environment.
+
+`browser-esm/`: This project demonstrates a modern approach using ES Modules (ESM) in the browser. Note that due to CORS restrictions with `file://` URLs, you'll need a local server to test this.
+
+■ Option 1: VS Code Live Server
+If you're using VS Code:
+
+1. Open the project in VS Code
+2. Click "Go Live" from the status bar
+   - The simplest option if you already use VS Code
+
+■ Option 2: Python HTTP Server
+If you have Python installed:
+
+1. Open a terminal in the `browser-esm/` directory
+
+2. Run:
+
+```sh
+python -m http.server
+```
+
+And then access in your browser:
+`http://localhost:8000`
+
 ## コード記述の指針
 
 - コードには How
