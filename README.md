@@ -36,15 +36,23 @@ pnpm install
 
 ### Code Quality Tools
 
-| Tool                             | Usage          | Config File   |
-| -------------------------------- | -------------- | ------------- |
-| [Prettier](https://prettier.io/) | Code Formatter | `.prettierrc` |
-| [ESLint](https://eslint.org/)    | Linter         | (WIP)         |
+| Tool                             | Usage          | Config File         |
+| -------------------------------- | -------------- | ------------------- |
+| [Prettier](https://prettier.io/) | Code Formatter | `.prettierrc`       |
+| [ESLint](https://eslint.org/)    | Linter         | `eslint.config.mjs` |
 
 #### Format & Lint
 
 ```sh
 pnpm exec prettier . --write
+pnpm eslint src/
+```
+
+This project uses Husky and lint-staged to automatically check code quality before commits:
+
+```sh
+# Pre-commit hook runs:
+pnpm exec lint-staged
 ```
 
 ## コード記述の指針

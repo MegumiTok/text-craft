@@ -15,8 +15,10 @@ export default defineConfig([
   },
   {
     files: ['src/markdown-text-processor/browser/*.js'], // browser/ディレクトリのファイルにのみ適用
-    parserOptions: {
-      sourceType: 'script', // モジュールではなくscriptとして解釈
+    languageOptions: {
+      parserOptions: {
+        sourceType: 'script', // モジュールではなくscriptとして解釈
+      },
     },
     rules: {
       'no-unused-vars': 'off', // browser/ディレクトリ内では未使用変数を無視
