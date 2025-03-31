@@ -3,16 +3,16 @@
  ************************************/
 
 function extractHeaders() {
-  const inputText = document.getElementById("mark-header-input").value;
-  const headerRegex = /^#{1,3}\s+(.*)/gm;
-  const headers = [];
-  let match;
+  const inputText = document.getElementById('mark-header-input').value
+  const headerRegex = /^#{1,3}\s+(.*)/gm
+  const headers = []
+  let match
 
   while ((match = headerRegex.exec(inputText)) !== null) {
-    headers.push(match[1]);
+    headers.push(match[1])
   }
 
-  document.getElementById("mark-header-output").innerText = headers.join("\n");
+  document.getElementById('mark-header-output').innerText = headers.join('\n')
 }
 
 /************************************
@@ -20,8 +20,8 @@ function extractHeaders() {
  ************************************/
 
 function normalizeMarkdownLinks() {
-  const inputText = document.getElementById("markdown-link-input").value;
-  const output = document.getElementById("markdown-link-output");
+  const inputText = document.getElementById('markdown-link-input').value
+  const output = document.getElementById('markdown-link-output')
 
   // 処理ルール:
   // 1. [[A|B]] 形式 → Bだけ残す
@@ -29,7 +29,7 @@ function normalizeMarkdownLinks() {
   const processedText = inputText.replace(
     /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
     (match, p1, p2) => p2 || p1
-  );
+  )
 
-  output.innerHTML = `<pre>${processedText}</pre>`;
+  output.innerHTML = `<pre>${processedText}</pre>`
 }
