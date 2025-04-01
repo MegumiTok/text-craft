@@ -24,11 +24,11 @@ function normalizeMarkdownLinks() {
   const output = document.getElementById('markdown-link-output')
 
   // 処理ルール:
-  // 1. [[A|B]] 形式 → Bだけ残す
+  // 1. [[A|B]] 形式 → Aだけ残す
   // 2. [[A]] 形式 → Aだけ残す
   const processedText = inputText.replace(
     /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
-    (match, p1, p2) => p2 || p1
+    (match, p1, p2) => p1 || p2
   )
 
   output.innerHTML = `<pre>${processedText}</pre>`

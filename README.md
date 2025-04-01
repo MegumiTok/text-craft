@@ -4,6 +4,11 @@
 
 A collection of lightweight Markdown text processing tools implemented purely with **Vanilla JavaScript** (no frameworks or libraries).
 
+This project focuses on:
+
+- Browser environments (no Node.js).
+- ES Modules (`import/export`) as the default.
+
 ## Directory Structure
 
 ```text
@@ -11,8 +16,7 @@ text-craft/               # Project root
 └── src/                  # Source code (multi-module)
     ├── markdown-text-processor/
     │   ├── browser/      # Browser implementation（Works without a local server）
-    │   ├── browser-esm/  # Browser-compatible ESM implementations requiring a local server
-    │   └── node/         # Node.js implementation
+    │   └── browser-esm/  # Browser-compatible ESM implementations requiring a local server
     └── (other-modules)/  # Additional modules can be added
 ```
 
@@ -44,8 +48,7 @@ pnpm install
 #### Format & Lint
 
 ```sh
-pnpm exec prettier . --write
-pnpm eslint src/
+pnpm format
 ```
 
 This project uses Husky and lint-staged to automatically check code quality before commits:
@@ -81,6 +84,14 @@ python -m http.server
 And then access in your browser:
 `http://localhost:8000`
 
+### Run Tests
+
+This project uses [Jest](https://jestjs.io/) for unit testing.
+
+```sh
+pnpm test
+```
+
 ## Code Style Guide
 
 ### Code Documentation Guidelines
@@ -96,8 +107,5 @@ And then access in your browser:
 
 ### Naming Conventions
 
-JavaScriptの慣習:
-
-UPPER_CASE: 変更不可な設定値/定数（Airbnb Style Guide）
-
-camelCase: 通常の変数/関数
+- UPPER_CASE: 変更不可な設定値/定数（Airbnb Style Guide）
+- camelCase: 通常の変数/関数

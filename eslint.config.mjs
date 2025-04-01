@@ -1,8 +1,12 @@
 import { defineConfig } from 'eslint/config'
 import globals from 'globals'
 import js from '@eslint/js'
+import pluginJest from 'eslint-plugin-jest'
 
 export default defineConfig([
+  {
+    ignores: ['**/coverage/', '*.config.js'],
+  },
   { files: ['**/*.{js,mjs,cjs}'] },
   {
     files: ['**/*.{js,mjs,cjs}'],
@@ -22,6 +26,21 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': 'off', // browser/ディレクトリ内では未使用変数を無視
+    },
+  },
+  {
+    // update this to match your test files
+    files: ['**/*.test.js'],
+    plugins: { jest: pluginJest },
+    languageOptions: {
+      globals: pluginJest.environments.globals.globals,
+    },
+    rules: {
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error',
     },
   },
 ])
