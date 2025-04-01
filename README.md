@@ -81,7 +81,9 @@ python -m http.server
 And then access in your browser:
 `http://localhost:8000`
 
-## コード記述の指針
+## Code Style Guide
+
+### Code Documentation Guidelines
 
 - コードには How
 - テストコードには What
@@ -91,3 +93,11 @@ And then access in your browser:
 - コードコメントには Why not
 
 > 参考: [和田卓人さんのツイート](https://x.com/t_wada/status/904916106153828352)
+
+### Naming Conventions
+
+JavaScriptの慣習:
+
+UPPER_CASE: 変更不可な設定値/定数（Airbnb Style Guide）
+
+camelCase: 通常の変数/関数

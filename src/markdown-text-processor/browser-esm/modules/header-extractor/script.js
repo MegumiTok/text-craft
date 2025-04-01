@@ -19,10 +19,12 @@
  * Matching Rules:
  * 1. Supports ATX-style headers only (no underline syntax)
  * 2. Requires 1-4 # symbols at line start (^ anchor)
- * 3. Mandatory single space after # symbols
+ * 3. REQUIRES space after #s
+ *    - Valid: `## Heading`
+ *    - Invalid: `##Heading` (no space)
  * 4. Preserves special characters in header text
  *
- * @throws {TypeError} If input is not a string *
+ * @throws {TypeError} If input is not a string
  */
 export function extractHeaders(text) {
   if (typeof text !== 'string') {
