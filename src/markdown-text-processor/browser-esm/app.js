@@ -16,5 +16,5 @@ async function loadModule(name) {
   init(container.firstElementChild)
 }
 
-loadModule('header-extractor')
+loadModule('header-title-extractor')
 loadModule('link-normalizer')
