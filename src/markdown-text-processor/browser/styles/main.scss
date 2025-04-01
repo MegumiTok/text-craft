@@ -1,0 +1,121 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+$spacing: 10px;
+$brown: #605c56;
+$button-base: lighten($brown, 30%);
+$button-highlight: lighten($button-base, 10%);
+
+$soft-brown: #7a736b; // 元のブラウンを少し柔らかく、彩度を抑えた色
+$button-base: lighten($soft-brown, 25%); // 控えめなベース色
+$button-highlight: lighten($button-base, 10%); // さりげないハイライト
+
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  color: $brown;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  margin: $spacing * 4 auto;
+  // background-color: #fff7f894;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; // 垂直方向中央寄せ（オプション）
+}
+
+body > h1 {
+  font-size: 3em;
+  margin: $spacing * 2;
+  text-align: center;
+}
+
+.container > h2 {
+  font-size: 2em;
+  margin-top: $spacing;
+  margin-bottom: $spacing;
+  background: #f7f7f7;
+  border-left: solid $brown 5px;
+  padding: 14px 12px;
+  // border-bottom: solid 3px #dadada;
+  clear: both;
+}
+
+.container {
+  position: relative; // 基準位置を設定
+  width: 60%;
+  margin-bottom: $spacing * 3;
+  padding: $spacing * 2;
+  padding-bottom: $spacing;
+
+  textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    resize: none;
+
+    &:focus {
+      outline: none;
+      border-color: #0066ff;
+      box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+    }
+  }
+
+  &__input-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  &__action {
+    position: absolute;
+    bottom: $spacing * 1.5;
+    right: $spacing * 2;
+  }
+
+  &__button {
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5em;
+    font-weight: bold;
+    margin: 0.2em;
+    background: $button-base;
+    border: none;
+    border-bottom: 3px solid $button-highlight;
+    border-radius: 10px;
+
+    &:hover {
+      transform: translateY(1px);
+    }
+    &:active {
+      border-bottom-color: transparent;
+      transform: translateY(3px);
+    }
+    &:focus {
+      animation: flashing 1s ease infinite;
+    }
+  }
+  &__output {
+    padding: 1rem;
+    border: 1px dashed #e0e0e0;
+    border-radius: 8px;
+    min-height: 100px;
+    background: #f9f9f9;
+  }
+}

@@ -43,8 +43,21 @@ function normalizeMarkdownLinks() {
 }
 
 /************************************
- ** 初期化処理（必要に応じて）
+ ** 初期化処理
  ************************************/
-window.addEventListener('DOMContentLoaded', function () {
-  // 必要なら初期化コードをここに記述
-})
+
+const TEXT_CONTENTS = {
+  headerInput: `# Header 1
+## Header 2
+### Header 3
+Some text here.
+## Another Header 2`,
+
+  linkInput: `1. [[Japan|Tokyo]] started as a small village...
+2. [[Venice]] was built on water...`,
+}
+
+window.onload = function () {
+  document.getElementById('mark-header-input').value = TEXT_CONTENTS.headerInput
+  document.getElementById('markdown-link-input').value = TEXT_CONTENTS.linkInput
+}
