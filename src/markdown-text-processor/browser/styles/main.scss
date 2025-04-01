@@ -1,17 +1,39 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
-$spacing: 10px;
-$brown: #605c56;
-$button-base: lighten($brown, 30%);
-$button-highlight: lighten($button-base, 10%);
 
-$soft-brown: #7a736b; // 元のブラウンを少し柔らかく、彩度を抑えた色
-$button-base: lighten($soft-brown, 25%); // 控えめなベース色
-$button-highlight: lighten($button-base, 10%); // さりげないハイライト
+// ========== カラーパレット ==========
+// ベースカラー
+$color-primary: #605c56;
+$color-primary-light: lighten($color-primary, 35%);
+$color-primary-dark: darken($color-primary, 10%);
+
+// アクセントカラー
+$color-accent: #0066ff;
+$color-accent-light: lighten($color-accent, 15%);
+$color-accent-dark: darken($color-accent, 10%);
+
+// ニュートラルカラー
+$color-white: #ffffff;
+$color-gray-1: #f9f9f9;
+$color-gray-2: #e0e0e0;
+$color-gray-3: #cccccc;
+
+// セマンティックカラー
+$color-background: rgba(255, 247, 248, 0.58);
+$color-text: $color-primary;
+$color-border: $color-gray-2;
+
+// ========== スペーシング ==========
+$spacing-unit: 10px;
+$spacing-xs: $spacing-unit * 0.5;
+$spacing-sm: $spacing-unit;
+$spacing-md: $spacing-unit * 2;
+$spacing-lg: $spacing-unit * 3;
+$spacing-xl: $spacing-unit * 4;
 
 * {
   box-sizing: border-box;
   font-family: Montserrat, sans-serif;
-  color: $brown;
+  color: $color-text;
 }
 
 *,
@@ -28,38 +50,38 @@ body {
   padding: 0;
   margin: 0;
 
-  margin: $spacing * 4 auto;
-  // background-color: #fff7f894;
+  margin: $spacing-xl auto;
+  background-color: $color-background;
   width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; // 垂直方向中央寄せ（オプション）
+  justify-content: center;
 }
 
 body > h1 {
   font-size: 3em;
-  margin: $spacing * 2;
+  margin: $spacing-md;
   text-align: center;
 }
 
 .container > h2 {
-  font-size: 2em;
-  margin-top: $spacing;
-  margin-bottom: $spacing;
+  font-size: 1.5em;
+  margin-top: $spacing-sm;
+  margin-bottom: $spacing-sm;
   background: #f7f7f7;
-  border-left: solid $brown 5px;
+  border-left: solid $color-primary 5px;
   padding: 14px 12px;
   // border-bottom: solid 3px #dadada;
   clear: both;
 }
 
 .container {
-  position: relative; // 基準位置を設定
+  position: relative;
   width: 60%;
-  margin-bottom: $spacing * 3;
-  padding: $spacing * 2;
-  padding-bottom: $spacing;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  padding-bottom: $spacing-sm;
 
   textarea {
     width: 100%;
@@ -85,8 +107,8 @@ body > h1 {
 
   &__action {
     position: absolute;
-    bottom: $spacing * 1.5;
-    right: $spacing * 2;
+    bottom: $spacing-sm;
+    right: $spacing-md;
   }
 
   &__button {
@@ -95,13 +117,19 @@ body > h1 {
     padding: 0.5em;
     font-weight: bold;
     margin: 0.2em;
-    background: $button-base;
+    background: $color-primary-light;
     border: none;
-    border-bottom: 3px solid $button-highlight;
+    // border-bottom: 3px solid $button-highlight;
     border-radius: 10px;
 
+    transition:
+      transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.2s ease;
+
     &:hover {
-      transform: translateY(1px);
+      // transform: translateY(1px);
+      box-shadow: 0 0 8px rgba($color-primary-light, 0.6);
+      background: mix($color-primary, $color-primary-light, 10%);
     }
     &:active {
       border-bottom-color: transparent;
@@ -113,9 +141,9 @@ body > h1 {
   }
   &__output {
     padding: 1rem;
-    border: 1px dashed #e0e0e0;
+    border: 1px dashed $color-border;
     border-radius: 8px;
     min-height: 100px;
-    background: #f9f9f9;
+    background: $color-gray-1;
   }
 }
