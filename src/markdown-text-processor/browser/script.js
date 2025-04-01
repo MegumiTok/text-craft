@@ -1,35 +1,63 @@
 /************************************
  ** Extract Headers of Markdown
  ************************************/
-
 function extractHeaders() {
-  const inputText = document.getElementById('mark-header-input').value
-  const headerRegex = /^#{1,3}\s+(.*)/gm
-  const headers = []
-  let match
+  try {
+    const inputText = document.getElementById('mark-header-input').value
+    const headers = []
 
-  while ((match = headerRegex.exec(inputText)) !== null) {
-    headers.push(match[1])
+    const matches = inputText.matchAll(/^#{1,4}\s+(.+)$/gm)
+
+    for (const match of matches) {
+      headers.push(match[1].trim())
+    }
+
+    document.getElementById('mark-header-output').innerHTML =
+      `<pre>${headers.join('\n')}</pre>`
+  } catch (error) {
+    console.error('Error extracting headers:', error)
+    document.getElementById('mark-header-output').textContent =
+      'Error: ' + error.message
   }
-
-  document.getElementById('mark-header-output').innerText = headers.join('\n')
 }
 
 /************************************
  ** Markdown Link Normalizer
  ************************************/
-
 function normalizeMarkdownLinks() {
-  const inputText = document.getElementById('markdown-link-input').value
-  const output = document.getElementById('markdown-link-output')
+  try {
+    const inputText = document.getElementById('markdown-link-input').value
 
-  // 処理ルール:
-  // 1. [[A|B]] 形式 → Aだけ残す
-  // 2. [[A]] 形式 → Aだけ残す
-  const processedText = inputText.replace(
-    /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
-    (match, p1, p2) => p1 || p2
-  )
+    const processedText = inputText.replace(
+      /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
+      (_, content) => content // 最初のキャプチャグループ（パイプの前）を常に使用
+    )
 
-  output.innerHTML = `<pre>${processedText}</pre>`
+    document.getElementById('markdown-link-output').innerHTML =
+      `<pre>${processedText}</pre>`
+  } catch (error) {
+    console.error('Error normalizing links:', error)
+    document.getElementById('markdown-link-output').textContent =
+      'Error: ' + error.message
+  }
+}
+
+/************************************
+ ** 初期化処理
+ ************************************/
+
+const TEXT_CONTENTS = {
+  headerInput: `# Header 1
+## Header 2
+### Header 3
+Some text here.
+## Another Header 2`,
+
+  linkInput: `1. [[Japan|Tokyo]] started as a small village...
+2. [[Venice]] was built on water...`,
+}
+
+window.onload = function () {
+  document.getElementById('mark-header-input').value = TEXT_CONTENTS.headerInput
+  document.getElementById('markdown-link-input').value = TEXT_CONTENTS.linkInput
 }

@@ -1,0 +1,151 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+
+// ========== カラーパレット ==========
+// ベースカラー
+$color-primary: #605c56;
+$color-primary-light: lighten($color-primary, 35%);
+$color-primary-dark: darken($color-primary, 10%);
+
+// アクセントカラー
+$color-accent: #0066ff;
+$color-accent-light: lighten($color-accent, 15%);
+$color-accent-dark: darken($color-accent, 10%);
+
+// ニュートラルカラー
+$color-white: #ffffff;
+$color-gray-1: #f9f9f9;
+$color-gray-2: #e0e0e0;
+$color-gray-3: #cccccc;
+
+// セマンティックカラー
+$color-background: rgba(255, 247, 248, 0.58);
+$color-text: $color-primary;
+$color-border: $color-gray-2;
+
+// ========== スペーシング ==========
+$spacing-unit: 10px;
+$spacing-xs: $spacing-unit * 0.5;
+$spacing-sm: $spacing-unit;
+$spacing-md: $spacing-unit * 2;
+$spacing-lg: $spacing-unit * 3;
+$spacing-xl: $spacing-unit * 4;
+
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  color: $color-text;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  margin: $spacing-xl auto;
+  background-color: $color-background;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body > h1 {
+  font-size: 3em;
+  margin: $spacing-md;
+  text-align: center;
+}
+
+.container > h2 {
+  font-size: 1.5em;
+  margin-top: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  background: #f7f7f7;
+  border-left: solid $color-primary 5px;
+  padding: 14px 12px;
+  // border-bottom: solid 3px #dadada;
+  clear: both;
+}
+
+.container {
+  position: relative;
+  width: 60%;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  padding-bottom: $spacing-sm;
+
+  textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    resize: none;
+
+    &:focus {
+      outline: none;
+      border-color: #0066ff;
+      box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+    }
+  }
+
+  &__input-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  &__action {
+    position: absolute;
+    bottom: $spacing-sm;
+    right: $spacing-md;
+  }
+
+  &__button {
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5em;
+    font-weight: bold;
+    margin: 0.2em;
+    background: $color-primary-light;
+    border: none;
+    // border-bottom: 3px solid $button-highlight;
+    border-radius: 10px;
+
+    transition:
+      transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.2s ease;
+
+    &:hover {
+      // transform: translateY(1px);
+      box-shadow: 0 0 8px rgba($color-primary-light, 0.6);
+      background: mix($color-primary, $color-primary-light, 10%);
+    }
+    &:active {
+      border-bottom-color: transparent;
+      transform: translateY(3px);
+    }
+    &:focus {
+      animation: flashing 1s ease infinite;
+    }
+  }
+  &__output {
+    all: initial !important;
+    display: block !important;
+    padding: 1rem;
+    border: 1px dashed $color-border;
+    border-radius: 8px;
+    min-height: 100px;
+    background: $color-gray-1;
+  }
+}

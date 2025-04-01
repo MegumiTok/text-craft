@@ -104,8 +104,3 @@ pnpm test
 - コードコメントには Why not
 
 > 参考: [和田卓人さんのツイート](https://x.com/t_wada/status/904916106153828352)
-
-### Naming Conventions
-
-- UPPER_CASE: 変更不可な設定値/定数（Airbnb Style Guide）
-- camelCase: 通常の変数/関数

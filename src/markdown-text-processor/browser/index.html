@@ -1,42 +1,45 @@
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown Text Processor</title>
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body>
     <h1>Markdown Text Processor</h1>
 
-    <h2>Markdown Header Extractor</h2>
+    <div class="container">
+      <h2>Markdown Header Extractor</h2>
+      <div class="container__input-group">
+        <textarea
+          placeholder="Markdownを入力してください"
+          id="mark-header-input"
+        >
+        </textarea>
+        <div class="container__action">
+          <button onclick="extractHeaders()" class="container__button">
+            Extract Headers
+          </button>
+        </div>
+      </div>
+      <div id="mark-header-output" class="container__output"></div>
+    </div>
 
-    <textarea
-      placeholder="Markdownを入力してください"
-      id="mark-header-input"
-      rows="10"
-      cols="50"
-    >
-# Header 1
-## Header 2
-### Header 3
-Some text here.
-## Another Header 2
-    </textarea>
-    <button onclick="extractHeaders()">Extract Headers</button>
-    <div id="mark-header-output"></div>
+    <div class="container">
+      <h2>Markdown Link Normalizer</h2>
+      <div class="container__input-group">
+        <textarea placeholder="textを入力してください" id="markdown-link-input">
+        </textarea>
+        <div class="container__action">
+          <button onclick="normalizeMarkdownLinks()" class="container__button">
+            Process Text
+          </button>
+        </div>
+      </div>
 
-    <h2>Markdown Link Normalizer</h2>
-    <textarea
-      placeholder="textを入力してください"
-      id="markdown-link-input"
-      rows="10"
-      cols="50"
-    >
-1. [[Japan|Tokyo]] started as a small village but became a huge city by changing the land.
-2. [[Venice]] was built on water by turning islands into a beautiful city of canals.    
-    </textarea>
-    <button onclick="normalizeMarkdownLinks()">Process Text</button>
-    <div id="markdown-link-output"></div>
+      <div id="markdown-link-output" class="container__output"></div>
+    </div>
 
     <script type="text/javascript" src="./script.js"></script>
   </body>

@@ -1,0 +1,126 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  color: #605c56;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  margin: 20px auto;
+  background-color: #ffffff;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+}
+
+body > h1 {
+  font-size: 3em;
+  margin: 20px;
+  text-align: center;
+}
+
+.container > h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+  padding: 12px 0;
+  border-bottom: 2px solid #b8b5b0;
+  background: transparent;
+}
+.container > h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 1em;
+  background: #cbabf9;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 20px;
+  padding-bottom: 10px;
+}
+.container textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 1rem;
+  resize: none;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+.container textarea:focus {
+  outline: none;
+  border-color: #cbabf9;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+  background-color: #ffffff;
+}
+.container__input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.container__action {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+.container__button {
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.6em 1.2em;
+  font-weight: 500;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  color: #605c56;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.container__button:hover {
+  background: #f9f9f9;
+  border-color: #cccccc;
+}
+.container__button:active {
+  background: #e0e0e0;
+}
+.container__button:focus {
+  outline: none;
+  border-color: #605c56;
+}
+.container__output {
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  min-height: 100px;
+  background: #f9f9f9;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+.container__output:not(:empty) {
+  border-left: 4px solid #cbabf9;
+  background: rgba(247, 242, 254, 0.05);
+}/*# sourceMappingURL=main.css.map */
