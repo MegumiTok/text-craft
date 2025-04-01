@@ -1,0 +1,36 @@
+{
+  "name": "text-craft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "prepare": "husky",
+    "lint:es": "eslint src/",
+    "format": "pnpm lint:es --fix && prettier --write ."
+  },
+  "type": "module",
+  "lint-staged": {
+    "*.{js,mjs}": [
+      "pnpm eslint src/ --fix",
+      "pnpm prettier --write"
+    ],
+    "*.{json,md,html}": "pnpm prettier --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.0",
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/jest": "^29.5.14",
+    "eslint": "^9.23.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3"
+  }
+}
