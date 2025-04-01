@@ -42,6 +42,6 @@ export function init(container) {
   const output = container.querySelector('[data-output]')
 
   button.addEventListener('click', () => {
-    output.value = extractHeaders(input.value).join('\n')
+    output.innerHTML = `<pre>${extractHeaders(input.value).join('\n')}</pre>`
   })
 }
