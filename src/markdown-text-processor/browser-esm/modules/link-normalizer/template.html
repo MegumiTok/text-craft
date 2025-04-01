@@ -1,0 +1,22 @@
+<section class="module" data-module="link-normalizer">
+  <h2>Markdown Link Normalizer</h2>
+
+  <label>
+    Markdown Input:
+
+    <textarea
+      data-input
+      placeholder="textを入力してください"
+      rows="10"
+      cols="50"
+    >
+Processing Rules:
+1. For [[A|B]] pattern → Keep only B (display text)
+2. For [[A]] pattern → Keep only A (link content)
+    </textarea>
+  </label>
+
+  <button data-process>Process Text</button>
+
+  <output data-output aria-live="polite"></output>
+</section>

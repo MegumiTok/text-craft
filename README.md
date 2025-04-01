@@ -73,11 +73,8 @@ If you're using VS Code:
 ■ Option 2: Python HTTP Server
 If you have Python installed:
 
-1. Open a terminal in the `browser-esm/` directory
-
-2. Run:
-
 ```sh
+cd src/markdown-text-processor/browser-esm
 python -m http.server
 ```
 
