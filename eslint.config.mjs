@@ -18,7 +18,7 @@ export default defineConfig([
     extends: ['js/recommended'],
   },
   {
-    files: ['src/markdown-text-processor/browser/*.js'], // browser/ディレクトリのファイルにのみ適用
+    files: ['src/browser/*.js'], // browser/ディレクトリのファイルにのみ適用
     languageOptions: {
       parserOptions: {
         sourceType: 'script', // モジュールではなくscriptとして解釈

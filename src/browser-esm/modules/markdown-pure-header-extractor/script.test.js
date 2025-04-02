@@ -1,6 +1,6 @@
-import { extractHeaders, init } from './script.js'
+import { extractPureHeader, init } from './script.js'
 
-describe('extractHeaders', () => {
+describe('extractPureHeader', () => {
   test('extracts h1-h4 headers from markdown text', () => {
     const input = `
 # Document
@@ -11,7 +11,7 @@ Content here...
 ##### Not extracted (h5+ ignored)
     `
     const expected = ['Document', 'Chapter', 'Section', 'Subsection']
-    expect(extractHeaders(input)).toEqual(expected)
+    expect(extractPureHeader(input)).toEqual(expected)
   })
 
   test('requires space after # symbols', () => {
@@ -20,7 +20,7 @@ Content here...
 ## Invalid
 ###Also invalid
     `
-    expect(extractHeaders(input)).toEqual(['Invalid'])
+    expect(extractPureHeader(input)).toEqual(['Invalid'])
   })
   test('preserves special characters in headers', () => {
     const input = `
@@ -28,7 +28,7 @@ Content here...
 ## 日本語もOK
       `
     const expected = ['Header with $pec!@l ch4r5', '日本語もOK']
-    expect(extractHeaders(input)).toEqual(expected)
+    expect(extractPureHeader(input)).toEqual(expected)
   })
 
   test('頭にスペースがあるヘッダーのみを抽出できる', () => {
@@ -40,7 +40,7 @@ Content here...
     ### スペースあり
 `
     const expected = ['スペースなしヘッダー', 'スペースなし']
-    expect(extractHeaders(input)).toEqual(expected)
+    expect(extractPureHeader(input)).toEqual(expected)
   })
 
   test('タグ付きタイトルの挙動', () => {
@@ -52,17 +52,17 @@ Content here...
       'タイトルです #タグです',
       'わたしもタイトルです #再びタグです',
     ]
-    expect(extractHeaders(input)).toEqual(expected)
+    expect(extractPureHeader(input)).toEqual(expected)
   })
 
   test('returns empty array for text without headers', () => {
-    expect(extractHeaders('Plain text')).toEqual([])
+    expect(extractPureHeader('Plain text')).toEqual([])
   })
 
   test('throws TypeError for non-string input', () => {
-    expect(() => extractHeaders(null)).toThrow(TypeError)
-    expect(() => extractHeaders(123)).toThrow(TypeError)
-    expect(() => extractHeaders({})).toThrow(TypeError)
+    expect(() => extractPureHeader(null)).toThrow(TypeError)
+    expect(() => extractPureHeader(123)).toThrow(TypeError)
+    expect(() => extractPureHeader({})).toThrow(TypeError)
   })
 })
 
