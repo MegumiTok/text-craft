@@ -37,7 +37,7 @@ function removeSpaces() {
 function removeBlankLines() {
   try {
     const inputElement = document.getElementById('remove-blank-lines')
-    const outputElement = document.getElementById('remove-spaces-output')
+    const outputElement = document.getElementById('remove-blank-lines-output')
 
     const processedText = inputElement.value.replace(/\r?\n{2,}/gm, '\n').trim()
 
@@ -59,7 +59,7 @@ function removeBlankLines() {
       })
   } catch (error) {
     console.error('Error:', error)
-    document.getElementById('remove-spaces-output').textContent =
+    document.getElementById('remove-blank-lines-output').textContent =
       `Error: ${error.message}`
   }
 }
