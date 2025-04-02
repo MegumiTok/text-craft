@@ -1,7 +1,7 @@
 /************************************
  ** Extract Headers of Markdown
  ************************************/
-function extractHeaders() {
+function extractPureHeader() {
   try {
     const inputText = document.getElementById('mark-header-input').value
     const headers = []
