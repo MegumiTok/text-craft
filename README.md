@@ -9,17 +9,6 @@ This project focuses on:
 - Browser environments (no Node.js).
 - ES Modules (`import/export`) as the default.
 
-## Directory Structure
-
-```text
-text-craft/               # Project root
-└── src/                  # Source code (multi-module)
-    ├── markdown-text-processor/
-    │   ├── browser/      # Browser implementation（Works without a local server）
-    │   └── browser-esm/  # Browser-compatible ESM implementations requiring a local server
-    └── (other-modules)/  # Additional modules can be added
-```
-
 ## Development
 
 ### Runtime Management (via asdf)
@@ -72,10 +61,6 @@ This project explores different ways to handle JavaScript modules in the browser
 
 1. Navigate to the browser implementation:
 
-   ```sh
-   cd src/markdown-text-processor/browser
-   ```
-
 2. Open `index.html` directly in your browser
 
 ### For ESM Module Usage (requires local server)
@@ -92,7 +77,7 @@ If you're using VS Code:
 If you have Python installed:
 
 ```sh
-cd src/markdown-text-processor/browser-esm
+cd src/browser-esm
 python -m http.server 8000
 ```
 
