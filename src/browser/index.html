@@ -2,21 +2,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markdown Text Processor</title>
+    <title>Text Processor</title>
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body>
-    <h1>Markdown Text Processor</h1>
+    <h1>Text Processor</h1>
 
     <div class="container">
       <h2>Markdown Header Extractor</h2>
       <div class="container__input-group">
         <textarea
-          placeholder="Markdownを入力してください"
+          placeholder="Paste your #stuff, I’ll snag the headers."
           id="mark-header-input"
-        >
-        </textarea>
+        ></textarea>
         <div class="container__action">
           <button onclick="extractPureHeader()" class="container__button">
             Extract Headers
@@ -29,8 +28,10 @@
     <div class="container">
       <h2>Markdown Link Normalizer</h2>
       <div class="container__input-group">
-        <textarea placeholder="textを入力してください" id="markdown-link-input">
-        </textarea>
+        <textarea
+          placeholder="Drop your #text, I’ll catch the headers."
+          id="markdown-link-input"
+        ></textarea>
         <div class="container__action">
           <button onclick="normalizeMarkdownLinks()" class="container__button">
             Process Text
@@ -45,12 +46,27 @@
       <h2>Remove spaces from text</h2>
       <div class="container__input-group">
         <textarea
-          placeholder="入力 → [処理]でスペース削除＆コピー"
+          placeholder="Gimme your text mess, I’ll tidy it up"
           id="remove-spaces"
-        >
-        </textarea>
+        ></textarea>
         <div class="container__action">
           <button onclick="removeSpaces()" class="container__button">
+            Process Text
+          </button>
+        </div>
+      </div>
+      <div id="remove-blank-lines-output" class="container__output"></div>
+    </div>
+
+    <div class="container">
+      <h2>Remove blank lines from text</h2>
+      <div class="container__input-group">
+        <textarea
+          placeholder="Put your text here, I’ll make it pretty!"
+          id="remove-blank-lines"
+        ></textarea>
+        <div class="container__action">
+          <button onclick="removeBlankLines()" class="container__button">
             Process Text
           </button>
         </div>

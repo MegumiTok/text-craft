@@ -32,6 +32,39 @@ function removeSpaces() {
 }
 
 /************************************
+ ** Remove blank lines
+ ************************************/
+function removeBlankLines() {
+  try {
+    const inputElement = document.getElementById('remove-blank-lines')
+    const outputElement = document.getElementById('remove-spaces-output')
+
+    const processedText = inputElement.value.replace(/\r?\n{2,}/gm, '\n').trim()
+
+    if (!processedText) {
+      outputElement.textContent = 'Please enter some text first!'
+      return
+    }
+
+    outputElement.textContent = processedText
+
+    navigator.clipboard
+      .writeText(processedText)
+      .then(() => {
+        console.log('Text copied to clipboard')
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err)
+        outputElement.textContent += ' (Copy failed)'
+      })
+  } catch (error) {
+    console.error('Error:', error)
+    document.getElementById('remove-spaces-output').textContent =
+      `Error: ${error.message}`
+  }
+}
+
+/************************************
  ** Extract Headers of Markdown
  ************************************/
 function extractPureHeader() {
