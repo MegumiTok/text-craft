@@ -1,4 +1,37 @@
 /************************************
+ ** Remove spaces from text
+ ************************************/
+
+function removeSpaces() {
+  try {
+    const inputElement = document.getElementById('remove-spaces')
+    const outputElement = document.getElementById('remove-spaces-output')
+
+    const processedText = inputElement.value.trim().replace(/\s+/g, '')
+
+    if (!processedText) {
+      outputElement.textContent = 'Please enter some text first!'
+      return
+    }
+
+    outputElement.textContent = processedText
+    navigator.clipboard
+      .writeText(processedText)
+      .then(() => {
+        console.log('Text copied to clipboard')
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err)
+        outputElement.textContent += ' (Copy failed)'
+      })
+  } catch (error) {
+    console.error('Error:', error)
+    document.getElementById('remove-spaces-output').textContent =
+      `Error: ${error.message}`
+  }
+}
+
+/************************************
  ** Extract Headers of Markdown
  ************************************/
 function extractPureHeader() {
