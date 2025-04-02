@@ -11,11 +11,9 @@ This project focuses on:
 
 ### Module System Considerations
 
-This project explores different ways to handle JavaScript modules in the browser and Node.js.
+`browser/`: Contains simple scripts that can be opened directly using `file://`. Because ESM imports don’t work with `file://` due to CORS restrictions, this code doesn’t use the module system. It’s built to run straight in the browser without any setup.
 
-`browser/`: Contains simple scripts that can be opened directly using `file://`. Since ESM imports are restricted by CORS in this case, the code does not rely on the module system and is structured for direct usage in a browser environment.
-
-`browser-esm/`: This project demonstrates a modern approach using ES Modules (ESM) in the browser. Note that due to CORS restrictions with `file://` URLs, you'll need a local server to test this.
+`browser-esm/`: Shows a modern approach using ES Modules (ESM) in the browser. Since `file://` URLs have CORS issues, you’ll need a local server to test this. This is where the module system really comes into play.
 
 ## Run Locally
 
@@ -108,4 +106,4 @@ pnpm test
 
 Reactに慣れた後にこのVanilla JSのプロジェクトに取り組んでみると、やっぱりReactのコンポーネント設計のありがたさが身にしみますね。フレームワークなしだと、どうしても同じコードを繰り返し書いちゃったり、「この部分を別のモジュールに分けるべきか？」とか「アーキテクチャをどう整理しよう？」とか考えるのが結構大変です。
 
-でも逆に、`browser/`に置いてるコードみたいに、単純な関数を動かしたいだけなら、HTMLとJSの2ファイルさえあればブラウザでやりたいことが一応できちゃうのはいいですよね。ファイルを開くだけなら動かすのも超簡単ですし、環境に依存しないので安心していつでもお気に入りの関数を実行でいます。ただ、やはり同じコードがあちこちに散見しますし、何よりテストが難しいので本当に趣味だけのコードになっちゃいますね。結局、メリットとデメリットを両方感じるプロジェクトになって個人的には勉強になってます。
+でも逆に、`browser/`に置いてるコードみたいに、単純な関数を動かしたいだけなら、HTMLとJSの2ファイルさえあればブラウザでやりたいことが一応できちゃうのはいいですよね。ファイルを開くだけなら動かすのも超簡単ですし、環境に依存しないので安心していつでもお気に入りの関数を実行できます。ただ、やはり同じコードがあちこちに散見しますし、何よりテストが難しいので本当に趣味だけのコードになっちゃいますね。結局、メリットとデメリットを両方感じるプロジェクトになって個人的には勉強になってます。
