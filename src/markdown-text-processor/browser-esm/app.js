@@ -18,4 +18,5 @@ async function loadModule(name) {
 
 loadModule('markdown-pure-header-extractor')
 loadModule('markdown-raw-header-extractor')
+loadModule('markdown-header-hierarchy-extractor')
 loadModule('link-normalizer')
