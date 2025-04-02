@@ -66,23 +66,37 @@ This project explores different ways to handle JavaScript modules in the browser
 
 `browser-esm/`: This project demonstrates a modern approach using ES Modules (ESM) in the browser. Note that due to CORS restrictions with `file://` URLs, you'll need a local server to test this.
 
-■ Option 1: VS Code Live Server
+## Run Locally
+
+### For Simple Browser Usage (no server needed)
+
+1. Navigate to the browser implementation:
+
+   ```sh
+   cd src/markdown-text-processor/browser
+   ```
+
+2. Open `index.html` directly in your browser
+
+### For ESM Module Usage (requires local server)
+
+#### Option 1: VS Code Live Server
+
 If you're using VS Code:
 
-1. Open the project in VS Code
+1. Open the `browser-esm` folder in VS Code
 2. Click "Go Live" from the status bar
-   - The simplest option if you already use VS Code
 
-■ Option 2: Python HTTP Server
+#### Option 2: Python HTTP Server
+
 If you have Python installed:
 
 ```sh
 cd src/markdown-text-processor/browser-esm
-python -m http.server
+python -m http.server 8000
 ```
 
-And then access in your browser:
-`http://localhost:8000`
+Then open: http://localhost:8000
 
 ### Run Tests
 
