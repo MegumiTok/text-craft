@@ -241,3 +241,67 @@ textarea {
     font-size: 2rem;
   }
 }
+
+/* ===== フィードバック用スタイル ===== */
+
+.feedback-bubble {
+  position: absolute;
+  bottom: calc(100% + 8px); /* ボタンの上に表示 */
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+  pointer-events: none;
+}
+
+.feedback-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* タイプ別色 */
+.feedback-bubble.success {
+  background: #10b981; /* Emerald */
+}
+.feedback-bubble.success::after {
+  border-top-color: #10b981;
+}
+
+.feedback-bubble.error {
+  background: #ef4444; /* Red */
+}
+.feedback-bubble.error::after {
+  border-top-color: #ef4444;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+}

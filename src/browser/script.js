@@ -2,22 +2,34 @@
  ** Extract Headers of Markdown
  ************************************/
 function extractPureHeader() {
-  try {
-    const inputText = document.getElementById('mark-header-input').value
-    const headers = []
+  const button = document
+    .querySelector('#mark-header-input')
+    .nextElementSibling.querySelector('.container__button')
+  const inputText = document.getElementById('mark-header-input').value
+  const outputElement = document.getElementById('mark-header-output')
 
+  try {
+    const headers = []
     const matches = inputText.matchAll(/^#{1,4}\s+(.+)$/gm)
 
     for (const match of matches) {
       headers.push(match[1].trim())
     }
 
-    document.getElementById('mark-header-output').innerHTML =
-      `<pre>${headers.join('\n')}</pre>`
+    const resultText = headers.join('\n')
+    outputElement.innerHTML = `<pre>${resultText}</pre>`
+
+    if (headers.length > 0) {
+      navigator.clipboard
+        .writeText(resultText)
+        .then(() => showFeedback(button, 'Headers copied!'))
+        .catch(() => showFeedback(button, 'Copy failed', 'error'))
+    } else {
+      showFeedback(button, 'No headers found', 'error')
+    }
   } catch (error) {
-    console.error('Error extracting headers:', error)
-    document.getElementById('mark-header-output').textContent =
-      'Error: ' + error.message
+    console.error('Error:', error)
+    showFeedback(button, `Error: ${error.message}`, 'error')
   }
 }
 
@@ -25,53 +37,62 @@ function extractPureHeader() {
  ** Markdown Link Normalizer
  ************************************/
 function normalizeMarkdownLinks() {
-  try {
-    const inputText = document.getElementById('markdown-link-input').value
+  const button = document
+    .querySelector('#markdown-link-input')
+    .nextElementSibling.querySelector('.container__button')
+  const inputText = document.getElementById('markdown-link-input').value
+  const outputElement = document.getElementById('markdown-link-output')
 
+  try {
     const processedText = inputText.replace(
       /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
-      (_, content) => content // 最初のキャプチャグループ（パイプの前）を常に使用
+      (_, content) => content
     )
 
-    document.getElementById('markdown-link-output').innerHTML =
-      `<pre>${processedText}</pre>`
+    outputElement.innerHTML = `<pre>${processedText}</pre>`
+
+    if (processedText && processedText !== inputText) {
+      navigator.clipboard
+        .writeText(processedText)
+        .then(() => showFeedback(button, 'Links normalized & copied!'))
+        .catch(() => showFeedback(button, 'Copy failed', 'error'))
+    } else if (!processedText) {
+      showFeedback(button, 'Please enter text first!', 'error')
+    } else {
+      showFeedback(button, 'No links to normalize', 'info')
+    }
   } catch (error) {
-    console.error('Error normalizing links:', error)
-    document.getElementById('markdown-link-output').textContent =
-      'Error: ' + error.message
+    console.error('Error:', error)
+    showFeedback(button, `Error: ${error.message}`, 'error')
   }
 }
 
 /************************************
  ** Remove spaces from text
  ************************************/
-
 function removeSpaces() {
-  try {
-    const inputElement = document.getElementById('remove-spaces')
-    const outputElement = document.getElementById('remove-spaces-output')
+  const button = document
+    .querySelector('#remove-spaces')
+    .nextElementSibling.querySelector('.container__button')
+  const inputElement = document.getElementById('remove-spaces')
+  const outputElement = document.getElementById('remove-spaces-output')
 
+  try {
     const processedText = inputElement.value.trim().replace(/\s+/g, '')
 
     if (!processedText) {
-      outputElement.textContent = 'Please enter some text first!'
+      showFeedback(button, 'Please enter text!', 'error')
       return
     }
 
     outputElement.textContent = processedText
     navigator.clipboard
       .writeText(processedText)
-      .then(() => {
-        showFeedback(outputElement, '✓ Copied to clipboard!', 'success')
-      })
-      .catch((err) => {
-        console.error('Failed to copy:', err)
-        showFeedback(outputElement, '✗ Failed to copy', 'error')
-      })
+      .then(() => showFeedback(button))
+      .catch(() => showFeedback(button, 'Copy failed', 'error'))
   } catch (error) {
     console.error('Error:', error)
-    document.getElementById('remove-spaces-output').textContent =
-      `Error: ${error.message}`
+    showFeedback(button, `Error: ${error.message}`, 'error')
   }
 }
 
@@ -79,63 +100,67 @@ function removeSpaces() {
  ** Remove blank lines
  ************************************/
 function removeBlankLines() {
-  try {
-    const inputElement = document.getElementById('remove-blank-lines')
-    const outputElement = document.getElementById('remove-blank-lines-output')
+  const button = document
+    .querySelector('#remove-blank-lines')
+    .nextElementSibling.querySelector('.container__button')
+  const inputElement = document.getElementById('remove-blank-lines')
+  const outputElement = document.getElementById('remove-blank-lines-output')
 
+  try {
     const processedText = inputElement.value.replace(/\r?\n{2,}/gm, '\n').trim()
 
     if (!processedText) {
-      outputElement.textContent = 'Please enter some text first!'
+      showFeedback(button, 'Please enter text!', 'error')
       return
     }
 
     outputElement.textContent = processedText
-
     navigator.clipboard
       .writeText(processedText)
-      .then(() => {
-        showFeedback(outputElement, '✓ Copied to clipboard!', 'success')
-      })
-      .catch((err) => {
-        console.error('Failed to copy:', err)
-        showFeedback(outputElement, '✗ Failed to copy', 'error')
-      })
+      .then(() => showFeedback(button))
+      .catch(() => showFeedback(button, 'Copy failed', 'error'))
   } catch (error) {
     console.error('Error:', error)
-    document.getElementById('remove-blank-lines-output').textContent =
-      `Error: ${error.message}`
+    showFeedback(button, `Error: ${error.message}`, 'error')
   }
 }
 
 /************************************
- ** フィードバック表示関数 (共通化)
+ * フィードバック表示関数（動的生成）
+ *
+ * 【設計思想】
+ * 1. 関心の分離 - HTML構造に依存せずJSで完全制御
+ * 2. DRY原則 - 複数ボタンでUIを共有
+ * 3. 状態管理 - 表示/非表示をJSで一元管理
+ *
+ * @param {HTMLElement} button - トリガーとなったボタン要素
+ * @param {string} message - 表示メッセージ（デフォルト: 'Copied!'）
+ * @param {'success'|'error'} type - フィードバックタイプ（デフォルト: 'success'）
  ************************************/
-function showFeedback(element, message, type = 'success') {
-  // 既存のコンテンツを保持
-  const originalContent = element.textContent
+function showFeedback(button, message = 'Copied!', type = 'success') {
+  // 既存フィードバックをクリーンアップ
+  const existingFeedback =
+    button.parentElement.querySelector('.feedback-bubble')
+  if (existingFeedback) existingFeedback.remove()
 
-  // フィードバック要素を作成
+  // フィードバック要素を動的生成
   const feedback = document.createElement('div')
-  feedback.className = `feedback feedback--${type}`
+  feedback.className = `feedback-bubble ${type}`
   feedback.textContent = message
 
-  // スタイルリセット
-  element.innerHTML = ''
-  element.appendChild(feedback)
+  // DOMに追加
+  button.parentElement.appendChild(feedback)
 
+  // 自動消去設定
   setTimeout(() => {
     feedback.classList.add('fade-out')
-    setTimeout(() => {
-      element.textContent = originalContent
-    }, 300)
-  }, 400)
+    setTimeout(() => feedback.remove(), 200)
+  }, 2000)
 }
 
 /************************************
  ** 初期化処理
  ************************************/
-
 const TEXT_CONTENTS = {
   headerInput: `# Header 1
 ## Header 2
