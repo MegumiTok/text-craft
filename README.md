@@ -1,29 +1,27 @@
-# Text Craft - Vanilla JS Markdown Toolkit
+# Text Craft with Vanilla JS
 
 ## Project Overview
 
-A collection of lightweight Markdown text processing tools implemented purely with **Vanilla JavaScript** (no frameworks or libraries).
+A lightweight collection of text processing utilities crafted with **Vanilla JavaScript** (no frameworks or libraries), focusing on:
 
-This project focuses on:
-
-- Browser environments (no Node.js).
-- ES Modules (`import/export`) as the default.
+- Browser-first design (no Node.js).
+- ES Modules (`import/export`) for modern, modular usage.
 
 ### Module System Considerations
 
-`browser/`: Contains simple scripts that can be opened directly using `file://`. Because ESM imports don’t work with `file://` due to CORS restrictions, this code doesn’t use the module system. It’s built to run straight in the browser without any setup.
+`browser/`: Contains simple scripts that can be opened directly using `file://`. Because ESM imports don’t work with `file://` due to CORS restrictions, this code doesn’t use the module system. It’s built to run straight in the browser without any setup. (Note: I know the code in `browser/` doesn’t fully embrace modularity, but I’m keeping it here for learning purposes.)
 
-`browser-esm/`: Shows a modern approach using ES Modules (ESM) in the browser. Since `file://` URLs have CORS issues, you’ll need a local server to test this. This is where the module system really comes into play.
+`browser-esm/`: Shows a modern approach using ES Modules (ESM) in the browser. Since `file://` URLs have CORS issues, you’ll need a local server to test this.
 
 ## Run Locally
 
-### For Simple Browser Usage (no server needed)
+### For Simple Browser Usage (no server needed, `browser/`)
 
 1. Navigate to the browser implementation
 
 2. Open `index.html` directly in your browser
 
-### For ESM Module Usage (requires local server)
+### For ESM Module Usage (requires local server, `browser-esm/`)
 
 #### Option 1: VS Code Live Server
 
