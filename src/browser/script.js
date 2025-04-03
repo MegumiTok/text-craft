@@ -98,6 +98,14 @@ function removeSpaces() {
 
 /************************************
  ** Remove blank lines
+ *
+ * 【削除対象の空白行パターン】
+ * 1. 完全な空行:          \n\n
+ * 2. スペースのみの行:     \n  \n (スペース2個以上)
+ * 3. タブのみの行:        \n\t\n
+ * 4. スペース/タブ混合行:  \n \t \n
+ * 5. 複数連続する空白行:   \n\n\n → \n に正規化
+ *
  ************************************/
 function removeBlankLines() {
   const button = document
@@ -107,7 +115,10 @@ function removeBlankLines() {
   const outputElement = document.getElementById('remove-blank-lines-output')
 
   try {
-    const processedText = inputElement.value.replace(/\r?\n{2,}/gm, '\n').trim()
+    const processedText = inputElement.value
+      .replace(/\n[\s\t]+\n/g, '\n') // 空白/タブ行を削除
+      .replace(/\n{2,}/g, '\n') // 連続改行を正規化
+      .trim()
 
     if (!processedText) {
       showFeedback(button, 'Please enter text!', 'error')
