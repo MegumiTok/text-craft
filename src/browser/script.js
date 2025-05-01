@@ -46,7 +46,7 @@ function normalizeMarkdownLinks() {
   try {
     const processedText = inputText.replace(
       /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
-      (_, content) => content
+      (_, content, displayText) => displayText || content
     )
 
     outputElement.innerHTML = `<pre>${processedText}</pre>`
