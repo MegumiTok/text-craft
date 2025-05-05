@@ -30,7 +30,7 @@
       <h2>Markdown Link Normalizer</h2>
       <div class="container__input-group">
         <textarea
-          placeholder="Drop your #text, I’ll catch the headers."
+          placeholder="Paste your Markdown, I’ll fix links. No mess."
           id="markdown-link-input"
         ></textarea>
         <div class="container__action">
@@ -76,6 +76,23 @@
         </div>
       </div>
       <div id="remove-blank-lines-output" class="container__output"></div>
+    </div>
+
+    <div class="container">
+      <h2>Trim Line Whitespace</h2>
+      <div class="container__input-group">
+        <textarea
+          placeholder="Put your text here, I’ll make it pretty!"
+          id="trim-line-whitespace"
+        ></textarea>
+        <div class="container__action">
+          <button onclick="trimLineWhitespace()" class="container__button">
+            Process Text
+          </button>
+          <!-- <div class="feedback-bubble" aria-live="polite" hidden></div> -->
+        </div>
+      </div>
+      <div id="trim-line-whitespace-output" class="container__output"></div>
     </div>
     <script type="text/javascript" src="./script.js"></script>
   </body>

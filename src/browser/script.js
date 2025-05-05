@@ -137,6 +137,38 @@ function removeBlankLines() {
 }
 
 /************************************
+ ** Trim whitespace from both ends of each line
+ ************************************/
+function trimLineWhitespace() {
+  const button = document
+    .querySelector('#trim-line-whitespace')
+    .nextElementSibling.querySelector('.container__button')
+  const inputElement = document.getElementById('trim-line-whitespace')
+  const outputElement = document.getElementById('trim-line-whitespace-output')
+
+  try {
+    const processedText = inputElement.value
+      .split('\n')
+      .map((line) => line.trim())
+      .join('\n')
+
+    if (!processedText) {
+      showFeedback(button, 'Please enter text!', 'error')
+      return
+    }
+
+    outputElement.textContent = processedText
+    navigator.clipboard
+      .writeText(processedText)
+      .then(() => showFeedback(button))
+      .catch(() => showFeedback(button, 'Copy failed', 'error'))
+  } catch (error) {
+    console.error('Error:', error)
+    showFeedback(button, `Error: ${error.message}`, 'error')
+  }
+}
+
+/************************************
  * フィードバック表示関数（動的生成）
  *
  * 【設計思想】
