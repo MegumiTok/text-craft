@@ -68,14 +68,14 @@ function normalizeMarkdownLinks() {
 }
 
 /************************************
- ** Remove spaces from text
+ ** Remove Whitespaces from text
  ************************************/
-function removeSpaces() {
+function removeWhiteSpaces() {
   const button = document
-    .querySelector('#remove-spaces')
+    .querySelector('#remove-whitespaces')
     .nextElementSibling.querySelector('.container__button')
-  const inputElement = document.getElementById('remove-spaces')
-  const outputElement = document.getElementById('remove-spaces-output')
+  const inputElement = document.getElementById('remove-whitespaces')
+  const outputElement = document.getElementById('remove-whitespaces-output')
 
   try {
     const processedText = inputElement.value.trim().replace(/\s+/g, '')
