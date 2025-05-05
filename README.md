@@ -9,9 +9,9 @@ A lightweight collection of text processing utilities crafted with **Vanilla Jav
 
 ### Module System Considerations
 
-`browser/`: Contains simple scripts that can be opened directly using `file://`. Because ESM imports don’t work with `file://` due to CORS restrictions, this code doesn’t use the module system. It’s built to run straight in the browser without any setup. (Note: I know the code in `browser/` doesn’t fully embrace modularity, but I’m keeping it here for learning purposes.)
+`browser/`: Contains simple scripts that can be opened directly using `file://`. Because ESM imports don't work with `file://` due to CORS restrictions, this code doesn't use the module system. It's built to run straight in the browser without any setup. (Note: I know the code in `browser/` doesn't fully embrace modularity, but I'm keeping it here for learning purposes.)
 
-`browser-esm/`: Shows a modern approach using ES Modules (ESM) in the browser. Since `file://` URLs have CORS issues, you’ll need a local server to test this.
+`browser-esm/`: Shows a modern approach using ES Modules (ESM) in the browser. Since `file://` URLs have CORS issues, you'll need a local server to test this.
 
 ## Run Locally
 
@@ -93,8 +93,8 @@ pnpm test
 
 - コードには How
 - テストコードには What
-  - 「やったこと」はコメント無しでも解るように書くべき
-  - セマンティックなマークアップで「What」を表現するように努めるか
+  - "やったこと"はコメント無しでも解るように書くべき
+  - セマンティックなマークアップで"What"を表現するように努めるか
 - コミットログには Why
 - コードコメントには Why not
 
@@ -120,6 +120,37 @@ Reactに慣れた後にこのVanilla JSのプロジェクトに取り組んで�
 テストドリブン開発（あまりできてないですが）的には、テストケース書いてそれが通るかで確認したい..とか思ってしまったり。
 
 テスト書くの嫌いでしたが制約の上で作業してはじめてテスト書きたいって思ったよーっていう話です..笑
+
+### 3. Naming convention: メソッド名の付け方について考えた
+
+今のプロジェクトはサーバーを立てずにローカルファイルをブラウザで開くだけでサクッと動くプログラムを実装ができたら個人的な都合は間に合うので最近コードのメンテナンスは /browser ディレクトリ配下のしかやってません..
+テストコード書けないので修正に不安が残りますが..
+
+さて、新しく追加した関数trimLineWhitespaceを考える際、命名のルールを再検討しました。
+
+ポイントは動詞と名詞。
+
+また、JavaScriptの標準メソッド名も参考にし、既存コードの慣習と機能の明確さを両立させました。
+
+■ 動詞: RemoveからTrimへ
+
+- 当初の考え:
+
+  - 既存コードでは「削除」を表す動詞としてRemoveを使用（例: removeSpaces）
+  - 慣習に従いremoveLineWhitespaceを検討
+
+- 今回の修正:
+  - JavaScriptの標準メソッドString.trim()が「文字列の先頭/末尾の空白削除」を指す
+  - 今回の機能（各行の先頭/末尾の空白削除）にぴったり一致するため、Trimを採用
+
+■ 名詞: SpaceからWhitespaceへ
+
+- 問題点:
+  - 既存コードではSpaceを使用（例: removeSpaces）
+  - しかし、Spaceはスペース（ ）のみを連想させ、タブ（\t）や改行（\n）を含む空白全体をカバーしないことが以前の修正でも問題点だった
+- 今回の修正:
+  - JavaScriptの正規表現（\s）や標準用語に倣い、空白を表す用語として Space -> Whitespaceに変更
+  - 過去のメソッド名（例: removeSpaces）についても同じく変更を適用
 
 ## TODO
 

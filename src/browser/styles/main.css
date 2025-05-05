@@ -118,6 +118,7 @@ h2::after {
   white-space: pre-wrap;
   word-break: break-all;
   transition: all 0.2s ease;
+  overflow-x: auto;
 }
 .container__output:empty {
   display: none;

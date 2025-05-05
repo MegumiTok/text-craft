@@ -46,7 +46,7 @@ function normalizeMarkdownLinks() {
   try {
     const processedText = inputText.replace(
       /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g,
-      (_, content) => content
+      (_, content, displayText) => displayText || content
     )
 
     outputElement.innerHTML = `<pre>${processedText}</pre>`
@@ -68,14 +68,14 @@ function normalizeMarkdownLinks() {
 }
 
 /************************************
- ** Remove spaces from text
+ ** Remove Whitespaces from text
  ************************************/
-function removeSpaces() {
+function removeWhiteSpaces() {
   const button = document
-    .querySelector('#remove-spaces')
+    .querySelector('#remove-whitespaces')
     .nextElementSibling.querySelector('.container__button')
-  const inputElement = document.getElementById('remove-spaces')
-  const outputElement = document.getElementById('remove-spaces-output')
+  const inputElement = document.getElementById('remove-whitespaces')
+  const outputElement = document.getElementById('remove-whitespaces-output')
 
   try {
     const processedText = inputElement.value.trim().replace(/\s+/g, '')
@@ -119,6 +119,38 @@ function removeBlankLines() {
       .replace(/\n[\s\t]+\n/g, '\n') // 空白/タブ行を削除
       .replace(/\n{2,}/g, '\n') // 連続改行を正規化
       .trim()
+
+    if (!processedText) {
+      showFeedback(button, 'Please enter text!', 'error')
+      return
+    }
+
+    outputElement.textContent = processedText
+    navigator.clipboard
+      .writeText(processedText)
+      .then(() => showFeedback(button))
+      .catch(() => showFeedback(button, 'Copy failed', 'error'))
+  } catch (error) {
+    console.error('Error:', error)
+    showFeedback(button, `Error: ${error.message}`, 'error')
+  }
+}
+
+/************************************
+ ** Trim whitespace from both ends of each line
+ ************************************/
+function trimLineWhitespace() {
+  const button = document
+    .querySelector('#trim-line-whitespace')
+    .nextElementSibling.querySelector('.container__button')
+  const inputElement = document.getElementById('trim-line-whitespace')
+  const outputElement = document.getElementById('trim-line-whitespace-output')
+
+  try {
+    const processedText = inputElement.value
+      .split('\n')
+      .map((line) => line.trim())
+      .join('\n')
 
     if (!processedText) {
       showFeedback(button, 'Please enter text!', 'error')
